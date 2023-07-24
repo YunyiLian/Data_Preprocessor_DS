@@ -11,7 +11,7 @@ class standardizer(BaseEstimator, TransformerMixin):
         self.empty_patterns = re.compile(r'^\s*$', re.IGNORECASE)
         self.true_patterns = re.compile(r'^True$', re.IGNORECASE)
         self.false_patterns = re.compile(r'^False$', re.IGNORECASE)
-    
+
     def fit(self, X, y = None):
         columns = []
         for col in X.columns:
@@ -19,13 +19,13 @@ class standardizer(BaseEstimator, TransformerMixin):
                 X[col].apply(lambda x: np.nan if bool(self.null_patterns.search(str(x))) else x)
                 X[col].apply(lambda x: np.nan if bool(self.empty_patterns.search(str(x))) else x)
                 X[col].apply(lambda x: True if bool(self.true_patterns.search(str(x))) else x)
-                X[col].apply(lambda x: False if bool(self.false_patterns.search(str(x))) else x)    
+                X[col].apply(lambda x: False if bool(self.false_patterns.search(str(x))) else x)
                 columns.append(col)
             except:
                 pass
         self.columns = columns
         return self
-    
+
     def transform(self, X, y=None):
         check_is_fitted(self,['columns'])
         X_t = X.copy()
@@ -33,9 +33,9 @@ class standardizer(BaseEstimator, TransformerMixin):
             X_t[col] = X_t[col].apply(lambda x: np.nan if bool(self.null_patterns.search(str(x))) else x)
             X_t[col] = X_t[col].apply(lambda x: np.nan if bool(self.empty_patterns.search(str(x))) else x)
             X_t[col] = X_t[col].apply(lambda x: True if bool(self.true_patterns.search(str(x))) else x)
-            X_t[col] = X_t[col].apply(lambda x: False if bool(self.false_patterns.search(str(x))) else x)   
+            X_t[col] = X_t[col].apply(lambda x: False if bool(self.false_patterns.search(str(x))) else x)
         return X_t
-    
+
 class numerical_transformer(BaseEstimator, TransformerMixin):
     def _convert_to_float(self, x):
         bool_patterns = re.compile(r'^True$|^False$', re.IGNORECASE)
@@ -44,7 +44,7 @@ class numerical_transformer(BaseEstimator, TransformerMixin):
             raise ValueError("The value cannot be converted to float.")
         else:
             return float(x)
-    
+
     def fit(self, X, y = None):
         columns = []
         for col in X.columns:
@@ -55,7 +55,7 @@ class numerical_transformer(BaseEstimator, TransformerMixin):
                 pass
         self.columns = columns
         return self
-    
+
     def transform(self, X, y = None):
         check_is_fitted(self,['columns'])
         X_t = X.copy()
@@ -63,13 +63,13 @@ class numerical_transformer(BaseEstimator, TransformerMixin):
             X_t[col] = X_t[col].apply(lambda x: '' if pd.isnull(x) or x in ['', ' '] else self._convert_to_float(x))
         return X_t
 
-class date_transformer(BaseEstimator, TransformerMixin):       
+class date_transformer(BaseEstimator, TransformerMixin):
     def _convert_to_date(self, x):
         try:
-            return dt.strptime(str(x), '%Y-%m-%d').date()
+            return dt.strptime(str(x), '%Y-%m-%d').date().strftime('%Y-%m-%d')
         except:
             try:
-                return dt.strptime(str(x), '%Y%m%d').date()
+                return dt.strptime(str(x), '%Y%m%d').date().strftime('%Y-%m-%d')
             except ValueError:
                 pass
         raise ValueError(f"Cannot convert {x} to a date with the given formats.")
@@ -84,7 +84,7 @@ class date_transformer(BaseEstimator, TransformerMixin):
                 pass
         self.columns = columns
         return self
-    
+
     def transform(self, X, y = None):
         check_is_fitted(self,['columns'])
         X_t = X.copy()
@@ -100,7 +100,7 @@ class string_transformer(BaseEstimator, TransformerMixin):
             raise ValueError("The value cannot be converted to string.")
         else:
             return str(x)
-    
+
     def fit(self, X, y = None):
         columns = []
         for col in X.columns:
@@ -114,7 +114,7 @@ class string_transformer(BaseEstimator, TransformerMixin):
                     pass
         self.columns = columns
         return self
-    
+
     def transform(self, X, y = None):
         check_is_fitted(self,['columns'])
         X_t = X.copy()
@@ -129,7 +129,7 @@ class boolean_transformer(BaseEstimator, TransformerMixin):
             raise ValueError("The value cannot be 'True' or 'False'.")
         else:
             return bool(x)
-    
+
     def fit(self, X, y = None):
         columns = []
         for col in X.columns:
@@ -140,7 +140,7 @@ class boolean_transformer(BaseEstimator, TransformerMixin):
                 pass
         self.columns = columns
         return self
-    
+
     def transform(self, X, y = None):
         check_is_fitted(self,['columns'])
         X_t = X.copy()
