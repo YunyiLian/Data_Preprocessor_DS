@@ -12,7 +12,7 @@ A data preprocessor module including standardizer and transformers to increase d
    - Convert the `np.nan` values within that column to an empty `str`. e.g. `np.nan`--->''
 
 4. **date_transformer**
-   - Convert the potential `date` values in a column to `date`. e.g. '2023-07-17'--->2023-07-17; '20230717'--->2023-07-17
+   - Convert the potential `date` values in a column to date `str`. e.g. '2023-07-17'--->'2023-07-17'; '20230717'--->'2023-07-17'
    - Convert the `np.nan` values within that column to single space `str`. e.g. `np.nan`--->' '
 
 6. **string_transformer**
