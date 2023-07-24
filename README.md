@@ -26,7 +26,7 @@ A data preprocessor module including standardizer and transformers to increase d
 ## Pipeline
 The following pipeline will implement all standardizer and transformers at once.
 
-However, the pipeline is **order-sensitive** so avoid changing the order of the classes within it. 
+However, the pipeline is **order-sensitive** so make sure to put `standardizer` first, and other `transformer`s can be put in any order.
 ```python
 from data_preprocessor import standardizer, numerical_transformer, date_transformer,
                               string_transformer, boolean_transformer
