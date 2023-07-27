@@ -5,7 +5,6 @@ A data preprocessor module including standardizer and transformers to increase d
 1. **standardizer**
    - Standardize `null` values and white space(s) `str` to `np.nan`; e.g. 'Null'/'NA'/'N.A.'/'NAN'/'NAT'/''/' '/...--->`np.nan`
    - Standardize potential `bool` values to be `True` or `False`; e.g. 'True'/'true'/'TRUE'--->`True`
-   - Convert all values to `str` except `np.nan`
 
 3. **numerical_transformer**
    - Convert the potential `float` values in a column to `float`. e.g. '2'-->2.0; '2.0'--->2.0
