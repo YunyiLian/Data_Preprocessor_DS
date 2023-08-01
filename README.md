@@ -1,29 +1,29 @@
 # Data_Preprocessor_DS
-A data preprocessor module including standardizer and transformers to increase data quality, and make it ready for analysis and developing
+A data preprocessor module including standardizer and transformers to increase data quality, and make it ready for analysis and development.
 
 ## Structure
 1. **standardizer**
    - Standardize `null` values and white space(s) `str` to `np.nan`; e.g. 'Null'/'NA'/'N.A.'/'NAN'/'NAT'/''/' '/...--->`np.nan`
-   - Standardize potential `bool` values to be `True` or `False`; e.g. 'True'/'true'/'TRUE'--->`True`
+   - Standardize potential `bool` values to `True` or `False`; e.g. 'True'/'true'/'TRUE'--->`True`
 
 3. **numerical_transformer**
-   - Convert the potential `float` values in a column to `float`. e.g. '2'-->2.0; '2.0'--->2.0
+   - Convert the values in the potential `float` columns to `float`. e.g. '2'-->2.0; '2.0'--->2.0
    - Convert the `np.nan` values within that column to an empty `str`. e.g. `np.nan`--->''
 
 4. **date_transformer**
-   - Convert the potential `date` values in a column to date `str`. e.g. '2023-07-17'--->'2023-07-17'; '20230717'--->'2023-07-17'
+   - Convert the values in the potential `date` columns to date `str`. e.g. '2023-07-17' (`datetime`)--->'2023-07-17'; '20230717'--->'2023-07-17'
    - Convert the `np.nan` values within that column to single space `str`. e.g. `np.nan`--->' '
 
 6. **string_transformer**
-   - Convert the potential `str` values in a column to `str`.
+   - Convert the values in the potential `str` columns to `str`.
    - Convert the `np.nan` values within that column to single space `str`. e.g. `np.nan`--->' '
 
 7. **boolean_transformer**
-   - Convert the potential `bool` values in a column to `bool`. e.g. 'True'--->`True`; 'False'--->`False`
+   - Convert the values in the potential `bool` columns to `bool`. e.g. 'True'--->`True`; 'False'--->`False`
    - Convert the `np.nan` values within that column to an empty `str`. e.g. `np.nan`--->''
 
 ## Pipeline
-The following pipeline will implement all standardizer and transformers at once.
+The following pipeline will implement the standardizer and all transformers at once.
 
 However, the pipeline is **order-sensitive** so make sure to put `standardizer` first, and other `transformer`s can be put in any order.
 ```python
@@ -39,6 +39,16 @@ pipeline = Pipeline(steps=[
 ])
 
 df_t = pipeline.fit_transform(df)
+```
+
+## Doc test
+Doc test can now be run in the `terminal`. Instruction is shown below:
+```console
+device_name:~ username$ python -m doctest -v .\data_preprocessor.py
+...
+20 tests in 21 items.
+20 passed and 0 failed.
+Test passed.
 ```
 
 ## Example
