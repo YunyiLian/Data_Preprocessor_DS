@@ -1,5 +1,16 @@
 Numerical,Boolean,Character,Date
 123.0,True,abc,2023-06-28
+<<<<<<< HEAD
+,, , 
+,, , 
+,, , 
+,, , 
+,, , 
+20.0,True,cde,2023-06-29
+2.5,False,1234,2023-06-30
+3.8,False,234,2023-06-30
+,,12, 
+=======
 ,, ,
 ,, ,
 ,, ,
@@ -9,3 +20,4 @@ Numerical,Boolean,Character,Date
 2.5,False,1234,2023-06-30
 3.8,False,234,2023-06-30
 ,,12,
+>>>>>>> 26f8cc4f91c0ef3b697f778e17245579a2c43540
