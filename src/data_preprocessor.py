@@ -252,10 +252,6 @@ class date_transformer(BaseEstimator, TransformerMixin):
 
     """
 
-<<<<<<< HEAD
-=======
-class date_transformer(BaseEstimator, TransformerMixin):
->>>>>>> 26f8cc4f91c0ef3b697f778e17245579a2c43540
     def _convert_to_date(self, x):
         """
         Convert `x` to date string `YYYY-MM-DD` if `x` has potential to be a date;
