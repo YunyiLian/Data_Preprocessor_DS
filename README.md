@@ -1,5 +1,12 @@
 # Data_Preprocessor_DS
-A data preprocessor module including standardizer and transformers to increase data quality, and make it ready for analysis and development.
+A data preprocessor module including standardizer and transformers to increase data quality, and make it ready for analysis and development. 
+The module pipeline can perform automatic data cleaning, column `dtype` (`float`, `datetime`, `str` & `bool`) detection and correction.
+<br/>
+
+## Python File Location for the Module 
+
+:star_struck:Directory: /src/data_preprocessor.py  
+:laughing:Direct Link: [Click_Here](/src/data_preprocessor.py) 
 
 ## Structure
 1. **standardizer**
@@ -23,8 +30,8 @@ A data preprocessor module including standardizer and transformers to increase d
    - Convert the `np.nan` values within that column to an empty `str`. e.g. `np.nan`--->''
 
 ## Pipeline
-The following pipeline will implement the standardizer and all transformers at once.
-
+The following pipeline will implement the standardizer and all transformers at once.  
+> __Warning__: 
 However, the pipeline is **order-sensitive** so make sure to put `standardizer` first, and other `transformer`s can be put in any order.
 ```python
 from data_preprocessor import standardizer, numerical_transformer, date_transformer,
@@ -67,9 +74,9 @@ Test passed.
 |  3  | NA           | NA         | NA           | NA          |
 |  4  | N.A.         | N.A.       | N.A.         | N.A.        |
 |  5  | None         | None       | None         | None        |
-|  6  | 20           | True       | cde          | 20230629    |
-|  7  | 2.5          | False      | 1234         | 20230630    |
-|  8  | 3.8          | False      | 234          | 20230630    |
+|  6  | 20           | true       | cde          | 20230629    |
+|  7  | 2.5          | FALSE      | 1234         | 20230630    |
+|  8  | 3.8          | false      | 234          | 20230630    |
 |  9  | nan          | nan        | 12           | nan         |
 
 </td>
