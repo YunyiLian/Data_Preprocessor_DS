@@ -36,6 +36,7 @@ However, the pipeline is **order-sensitive** so make sure to put `standardizer` 
 ```python
 from data_preprocessor import standardizer, numerical_transformer, date_transformer,
                               string_transformer, boolean_transformer
+from sklearn.pipeline import Pipeline
 
 pipeline = Pipeline(steps=[
     ('standardize', standardizer()),
