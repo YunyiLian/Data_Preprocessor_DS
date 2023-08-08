@@ -7,8 +7,7 @@ import re
 
 class standardizer(BaseEstimator, TransformerMixin):
     """
-    Class to standardize all null values and white space(s) strings to np.nan;
-    Standardize all potential boolean values to the correct boolean format and type.
+    Class to standardize all null values and white space(s) strings to np.nan.
     
     Attributes
     ----------
@@ -43,8 +42,6 @@ class standardizer(BaseEstimator, TransformerMixin):
     def __init__(self):
         self.null_patterns = re.compile(r'^N[./]*A[./]*[NT]?[./]*$|^none[.]?$|^null[.]?$', re.IGNORECASE)
         self.empty_patterns = re.compile(r'^\s*$', re.IGNORECASE)
-        self.true_patterns = re.compile(r'^True$', re.IGNORECASE)
-        self.false_patterns = re.compile(r'^False$', re.IGNORECASE)
 
     def fit(self, X, y = None):
         """
@@ -72,8 +69,6 @@ class standardizer(BaseEstimator, TransformerMixin):
             try:
                 X[col].apply(lambda x: np.nan if bool(self.null_patterns.search(str(x))) else x)
                 X[col].apply(lambda x: np.nan if bool(self.empty_patterns.search(str(x))) else x)
-                X[col].apply(lambda x: True if bool(self.true_patterns.search(str(x))) else x)
-                X[col].apply(lambda x: False if bool(self.false_patterns.search(str(x))) else x)
                 columns.append(col)
             except:
                 pass
@@ -104,8 +99,6 @@ class standardizer(BaseEstimator, TransformerMixin):
         for col in self.columns:
             X_t[col] = X_t[col].apply(lambda x: np.nan if bool(self.null_patterns.search(str(x))) else x)
             X_t[col] = X_t[col].apply(lambda x: np.nan if bool(self.empty_patterns.search(str(x))) else x)
-            X_t[col] = X_t[col].apply(lambda x: True if bool(self.true_patterns.search(str(x))) else x)
-            X_t[col] = X_t[col].apply(lambda x: False if bool(self.false_patterns.search(str(x))) else x)
         return X_t
 
 class numerical_transformer(BaseEstimator, TransformerMixin):
