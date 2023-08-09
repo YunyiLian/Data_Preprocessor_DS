@@ -11,7 +11,6 @@ The module pipeline can perform automatic data cleaning, column `dtype` (`float`
 ## Structure
 1. **standardizer**
    - Standardize `null` values and white space(s) `str` to `np.nan`; e.g. 'Null'/'NA'/'N.A.'/'NAN'/'NAT'/''/' '/...--->`np.nan`
-   - Standardize potential `bool` values to `True` or `False`; e.g. 'True'/'true'/'TRUE'--->`True`
 
 3. **numerical_transformer**
    - Convert the values in the potential `float` columns to `float`. e.g. '2'-->2.0; '2.0'--->2.0
