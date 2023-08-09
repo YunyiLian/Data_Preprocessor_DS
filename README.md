@@ -26,6 +26,7 @@ The module pipeline can perform automatic data cleaning, column `dtype` (`float`
 
 7. **boolean_transformer**
    - Convert the values in the potential `bool` columns to `bool`. e.g. 'True'--->`True`; 'False'--->`False`
+   - Handle typos like `Ture` and `Flase`. e.g. 'Ture'--->`True`; 'Flase'--->`False`
    - Convert the `np.nan` values within that column to an empty `str`. e.g. `np.nan`--->''
 
 ## Pipeline
